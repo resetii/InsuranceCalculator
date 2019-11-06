@@ -5,10 +5,12 @@ public class Member {
 	boolean cancer, diabetes, alz;
 	String first, last;
 	InsuranceScore myScore;
-	
+
 	// default constructor
     public Member() {
-        age = 0;
+        first = "";
+    	last = "";
+    	age = 0;
         height = 0;
         weight = 0;
         bpSys = 0;
@@ -19,7 +21,7 @@ public class Member {
     }
     
     // member constructor when provided values
-    public Member(int age, int height, int weight, int bpSys, int bpDias, boolean cancer, boolean diabetes, boolean alz) {
+    public Member(String first, String last, int age, int height, int weight, int bpSys, int bpDias, boolean cancer, boolean diabetes, boolean alz) {
         setAge(age);
         setHeight(height);
         setWeight(weight);
@@ -28,6 +30,8 @@ public class Member {
         setCancer(cancer);
         setDiabetes(diabetes);
         setAlz(alz);
+        setFirst(first);
+        setLast(last);
     }
 	
     // print in favorable string format
@@ -114,4 +118,14 @@ public class Member {
 	public void setLast(String last) {
 		this.last = last;
 	}
+	
+	
+	public InsuranceScore getMyScore() {
+		return myScore;
+	}
+
+	public void setMyScore(InsuranceScore myScore) {
+		this.myScore = myScore;
+	}
+
 }

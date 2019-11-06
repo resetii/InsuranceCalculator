@@ -21,21 +21,22 @@ public class InsuranceRiskCalculator {
 	public static void dispWelcome() {
 		System.out.println("***************************************************");
 		System.out.println("             *Insurance Score Card*");
-		System.out.println("  This app scores a potential customer");
-		System.out.println("  on various health attributes: blood");
-		System.out.println("  pressure, age, height, weight, and");
-		System.out.println("  family history of disease. It writes");
-		System.out.println("  each member's insurance grade to a");
-		System.out.println("  JSON file so that they can be easily");
-		System.out.println("  shared on a web-based data exchange.");
+		System.out.println("      This app scores a potential customer");
+		System.out.println("      on various health attributes: blood");
+		System.out.println("      pressure, age, height, weight, and");
+		System.out.println("      family history of disease. It writes");
+		System.out.println("      each member's insurance grade to a");
+		System.out.println("      JSON file so that they can be easily");
+		System.out.println("      shared on a web-based data exchange.");
 		System.out.println("***************************************************");
 	}
 
 	// Calls the override toString function to print all rooms
-	public static void printRoomsToScreen(ArrayList<Room> emps) {
-//		for (Room emp : emps) {
-//			System.out.println(emp.toString());
-//		}
+	public static void printMembersToScreen(ArrayList<Member> emps) {
+		for (Member emp : emps) {
+			System.out.println(emp.toString());
+			System.out.println("-----------------------");
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -46,8 +47,8 @@ public class InsuranceRiskCalculator {
 		System.out.print("Enter name of member file: ");
 		String fname = sc.nextLine();
 
-		//ArrayList<Room> emps = RoomReader.readRoomsFromFile(fname);
-		//System.out.printf("%d members were read.", emps.size());
+		ArrayList<Member> emps = MemberReader.readMembersFromFile(fname);
+		System.out.printf("%d members were read.", emps.size());
 		
 		// if data is bad return error
 		if (emps == null) {
@@ -58,7 +59,8 @@ public class InsuranceRiskCalculator {
 				choice = sc.nextInt();
 				if (choice == 1) {
 					// list members
-			
+					System.out.println("Here are the members:\n");
+					printMembersToScreen(emps);
 					
  				} else if (choice == 2) {
  					// add new member
