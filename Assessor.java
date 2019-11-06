@@ -17,14 +17,14 @@ public class Assessor {
 		}
 		
 		// convert lbs inches to the bmi in appropriate units 
-		bmi = (weight / (height*height)) * 703.0;
+		bmi = (weight * 703.0) / (height * height * 1.0);
 		
 		// bmi is normal
-		if ( bmi < 25 && bmi >= 18.5) {
+		if ((bmi < 25) && (bmi >= 18.5)) {
 			counter = counter + 0;
 		}
 		// bmi is overweight
-		else if (bmi < 30 && bmi >= 25) {
+		else if ((bmi < 30) && (bmi >= 25)) {
 			counter = counter + 30;
 		}
 		// bmi is obese or really low

@@ -21,7 +21,7 @@ public class InsuranceScore {
     // print in favorable string format
     @Override
     public String toString() { 
-    	return String.format("Name:            %s, %s\nScore:                     %d\nVerdict:            %s",
+    	return String.format("Name:  %s, %s\nScore:  %d\nVerdict:  %s",
     			last, first, score, risk);
     }
 	

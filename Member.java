@@ -42,8 +42,13 @@ public class Member {
     	if (diabetes) {dia="y";} else {dia="n";}
     	if (alz) {al="y";} else {al="n";}
 
-    	return String.format("%s, %s\nAge           %d\nHeight        %d in\nWeight       %d lbs\nBP Syst      %d\nBP Dias       %d\nCancer         %s\nDiabetes       %s\nAlzheimers     %s",
+    	return String.format("%s, %s\nAge           %d\nHeight        %d in\nWeight       %d lbs\nBP Syst       %d\nBP Dias       %d\nCancer         %s\nDiabetes       %s\nAlzheimers     %s",
     			last,first,age,height,weight,bpSys,bpDias,can,dia,al);
+    }
+    
+    public void assessment() {
+    	int temp = Assessor.assessScore(age, height, weight, bpSys, bpDias, cancer, diabetes, alz);
+    	myScore = new InsuranceScore(first, last, temp);
     }
 	
 	// age of user as int

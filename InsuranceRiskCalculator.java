@@ -12,7 +12,7 @@ public class InsuranceRiskCalculator {
 		System.out.println("2. Add a new member.");
 		System.out.println("3. Save members.");
 		System.out.println("4. Load members.");
-		System.out.println("5. Asssess members.");
+		System.out.println("5. Assess members.");
 		System.out.println("6. Save assessments as JSON.");
 		System.out.println("7. Exit.");
 		System.out.print("Please enter the number of your choice: ");
@@ -64,6 +64,43 @@ public class InsuranceRiskCalculator {
 					
  				} else if (choice == 2) {
  					// add new member
+ 					Scanner scan = new Scanner(System.in);
+					int age, height, weight, sys, dia; 
+					String first, last;
+					Boolean cancer, diabetes, alz;
+					ArrayList<String> hashTags = new ArrayList<String>();
+					System.out.print("Enter first name: ");
+					first = scan.nextLine();
+					System.out.print("Enter last name: ");
+					last = scan.nextLine();
+					System.out.print("Enter age: ");
+					age = Integer.parseInt(scan.nextLine());
+					System.out.print("Enter height in inches: ");
+					height = Integer.parseInt(scan.nextLine());
+					System.out.print("Enter weight in pounds: ");
+					weight = Integer.parseInt(scan.nextLine());
+					System.out.print("Enter systolic blood pressure: ");
+					sys = Integer.parseInt(scan.nextLine());
+					System.out.print("Enter diastolic blood pressure: ");
+					dia = Integer.parseInt(scan.nextLine());
+					System.out.print("Has a family member ever had the following conditions:\n");
+					System.out.print("Cancer? ");
+					if (scan.nextLine().trim().toLowerCase().equals("y")) {
+						cancer = true;
+					}
+					else { cancer = false;}
+					System.out.print("Diabetes? ");
+					if (scan.nextLine().trim().toLowerCase().equals("y")) {
+						diabetes = true;
+					}
+					else { diabetes = false;}
+					System.out.print("Alzheimers? ");
+					if (scan.nextLine().trim().toLowerCase().equals("y")) {
+						alz = true;
+					}
+					else { alz = false;}
+					
+					emps.add(new Member(first, last, age, height, weight, sys, dia, cancer, diabetes, alz));
 				} 		
  				else if (choice == 3) {
  					// save members
@@ -73,6 +110,12 @@ public class InsuranceRiskCalculator {
 				} 		
  				else if (choice == 5) {
  					// assess members
+ 					System.out.println("Here are the assessments:");
+ 					for (Member emp : emps) {
+ 						emp.assessment();
+ 						System.out.println(emp.getMyScore().toString());
+ 						System.out.print("\n");
+ 					}
 				} 		
  				else if (choice == 6) {
  					// save assessments as json
