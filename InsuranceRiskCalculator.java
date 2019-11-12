@@ -30,14 +30,6 @@ public class InsuranceRiskCalculator {
 		System.out.println("      shared on a web-based data exchange.");
 		System.out.println("***************************************************");
 	}
-
-	// Calls the override toString function to print all rooms
-	public static void printMembersToScreen(ArrayList<Member> emps) {
-		for (Member emp : emps) {
-			System.out.println(emp.toString());
-			System.out.println("-----------------------");
-		}
-	}
 	
 	public static void main(String[] args) {
 		// build scanner and have user provide file path
@@ -58,12 +50,15 @@ public class InsuranceRiskCalculator {
 				dispMenu();
 				choice = sc.nextInt();
 				if (choice == 1) {
-					// list members
+					// list members 
+					// DONE
 					System.out.println("Here are the members:\n");
-					printMembersToScreen(emps);
+					MemberWriter.printMembersToScreen(emps);
+					// CHECK
 					
  				} else if (choice == 2) {
  					// add new member
+ 					// DONE
  					Scanner scan = new Scanner(System.in);
 					int age, height, weight, sys, dia; 
 					String first, last;
@@ -103,13 +98,35 @@ public class InsuranceRiskCalculator {
 					emps.add(new Member(first, last, age, height, weight, sys, dia, cancer, diabetes, alz));
 				} 		
  				else if (choice == 3) {
- 					// save members
+ 					// save members TEXT DONE
+ 					Scanner scan1 = new Scanner(System.in);
+ 					String letterChoice, nameFile;
+ 					System.out.print("(T)ext, (B)inary, or (X)ML? ");
+ 					letterChoice = scan1.nextLine();
+ 					System.out.print("Enter name of output file: ");
+ 					nameFile = scan1.nextLine();
+ 					
+ 					if ( letterChoice.equals("T") || letterChoice.equals("t")) {
+ 	 					MemberWriter.printMembersToTextFile(emps, nameFile);
+ 					}
+ 					
 				} 		
  				else if (choice == 4) {
- 					// load members
+ 					// load members TXT DONE
+ 					Scanner scan2 = new Scanner(System.in);
+ 					String letterChoice, nameFile;
+ 					System.out.print("(T)ext, (B)inary, or (X)ML? ");
+ 					letterChoice = scan2.nextLine();
+ 					System.out.print("Enter name of input file: ");
+ 					nameFile = scan2.nextLine();
+ 					
+ 					if ( letterChoice.equals("T") || letterChoice.equals("t")) {
+ 						emps = MemberReader.readMembersFromFile(nameFile);
+ 					}	
 				} 		
  				else if (choice == 5) {
  					// assess members
+ 					// DONE
  					System.out.println("Here are the assessments:");
  					for (Member emp : emps) {
  						emp.assessment();
