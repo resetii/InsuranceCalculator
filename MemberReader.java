@@ -4,7 +4,8 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
+import java.beans.XMLDecoder;
+import java.io.*;
 
 public class MemberReader {
 	public static ArrayList<Member> readMembersFromFile(String fname) {
@@ -23,4 +24,25 @@ public class MemberReader {
 			return null;
 		}
 	}
+	public static ArrayList<Member> readMembersFromBinary(String fname) {
+        try {
+        	FileInputStream fis = new FileInputStream(fname);
+        	ObjectInputStream ois = new ObjectInputStream(fis);
+        	ArrayList<Member> results = (ArrayList<Member>) ois.readObject();
+        	ois.close();
+            return results;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+	public static ArrayList<Member> readMembersFromXML(String fname) {
+        try {
+            XMLDecoder xml = new XMLDecoder(new BufferedInputStream(new FileInputStream(fname)));
+            ArrayList<Member> results = (ArrayList<Member>)xml.readObject();
+            xml.close();
+            return results;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 }

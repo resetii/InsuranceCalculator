@@ -1,11 +1,9 @@
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
+import java.beans.XMLEncoder;
 
 public class MemberWriter {
-	// Calls the override toString function to print all rooms
+	// Calls the override toString function to print
 	public static void printMembersToScreen(ArrayList<Member> emps) {
 		for (Member emp : emps) {
 			System.out.println(emp.toString());
@@ -13,29 +11,29 @@ public class MemberWriter {
 		}
 	}
 	
-    public static boolean printMembersToTextFile(ArrayList<Member> emps, String fname) {
+    public static boolean printMembersToTextFile(ArrayList<Member> members, String fname) {
         File f = new File(fname);
-        return printMembersToTextFile(emps, f);
+        return printMembersToTextFile(members, f);
     }
-    public static boolean printMembersToTextFile(ArrayList<Member> emps, File file) {
+    public static boolean printMembersToTextFile(ArrayList<Member> members, File file) {
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-            for (Member emp : emps) {
+            for (Member mem : members) {
                 String a, b, c;
-            	if (emp.getCancer()) {
+            	if (mem.getCancer()) {
                 	a = "y";
                 }
                 else {a = "n";}
-            	if (emp.getDiabetes()) {
+            	if (mem.getDiabetes()) {
                 	b = "y";
                 }
                 else {b = "n";}
-            	if (emp.getAlz()) {
+            	if (mem.getAlz()) {
                 	c = "y";
                 }
                 else {c = "n";}
             	pw.printf("%s\t%s\t%d\t%d\t%d\t%d\t%d\t%s\t%s\t%s\n", 
-                		emp.getFirst(),emp.getLast(), emp.getAge(), emp.getHeight(), emp.getWeight(),emp.getSys(),emp.getDias(),a,b,c);
+                		mem.getFirst(),mem.getLast(), mem.getAge(), mem.getHeight(), mem.getWeight(),mem.getSys(),mem.getDias(),a,b,c);
             }
             pw.close();
             return true;
@@ -43,4 +41,25 @@ public class MemberWriter {
             return false;
         }
     }
+    public static boolean writeMembersToBinary(ArrayList<Member> members, String fname) {
+            try {
+            	FileOutputStream fos = new FileOutputStream(fname);
+            	ObjectOutputStream oos = new ObjectOutputStream(fos);
+            	oos.writeObject(members);
+            	oos.close();
+                return true;
+            } catch(Exception ex) {
+                return false;
+            }
+    }
+    public static boolean writeMembersToXML(ArrayList<Member> members, String fname) {
+            try {
+                XMLEncoder xml = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(fname)));
+                xml.writeObject(members);
+                xml.close();
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        }
 }

@@ -1,12 +1,19 @@
+import java.io.Serializable;
 
-
-public class Member {
+/**
+ * This is a class called Member that defines the data pertaining to the medical history of an individual. 
+ * @author James Campion
+ * @version 1.0
+ */
+public class Member implements Serializable {
 	int age, height, weight, bpSys, bpDias;
 	boolean cancer, diabetes, alz;
 	String first, last;
 	InsuranceScore myScore;
 
-	// default constructor
+	/**
+	 * Default constructor, sets everything to 0, "", or false. 
+	 */
     public Member() {
         first = "";
     	last = "";
@@ -20,7 +27,19 @@ public class Member {
         alz = false;
     }
     
-    // member constructor when provided values
+    /**
+     * This constructs a member with specified values for each parameter. 
+     * @param first The first name of the person. 
+     * @param last The last name of the person.
+     * @param age The age of the person.
+     * @param height The height of the person.
+     * @param weight The weight of the person.
+     * @param bpSys The systolic blood pressure of the person.
+     * @param bpDias The diastolic blood pressure of the person.
+     * @param cancer Does this user have a history of cancer in the family?
+     * @param diabetes Does this user have a history of diabetes in the family?
+     * @param alz Does this user have a history of alzheimer's in the family?
+     */
     public Member(String first, String last, int age, int height, int weight, int bpSys, int bpDias, boolean cancer, boolean diabetes, boolean alz) {
         setAge(age);
         setHeight(height);
@@ -34,7 +53,11 @@ public class Member {
         setLast(last);
     }
 	
-    // print in favorable string format
+    /**
+     * Overrides Java's toString function to be able to print members in desired format
+     * @return a formatted list of all data for that member
+     * @see java.lang.Object.toString
+     */
     @Override
     public String toString() { 
     	String can, dia, al;
@@ -46,15 +69,23 @@ public class Member {
     			last,first,age,height,weight,bpSys,bpDias,can,dia,al);
     }
     
+    /**
+     * This function uses the Assessor class to assign an object of type InsuranceScore to this member.
+     */
     public void assessment() {
     	int temp = Assessor.assessScore(age, height, weight, bpSys, bpDias, cancer, diabetes, alz);
     	myScore = new InsuranceScore(first, last, temp);
     }
 	
-	// age of user as int
+    /**
+     * @return Age of member.
+     */
 	public int getAge() {
         return age;
     }
+	/**
+	 * @param age Sets age.
+	 */
     public void setAge(int age) {
         this.age = age;
     }

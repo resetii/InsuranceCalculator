@@ -58,7 +58,6 @@ public class InsuranceRiskCalculator {
 					
  				} else if (choice == 2) {
  					// add new member
- 					// DONE
  					Scanner scan = new Scanner(System.in);
 					int age, height, weight, sys, dia; 
 					String first, last;
@@ -98,7 +97,7 @@ public class InsuranceRiskCalculator {
 					emps.add(new Member(first, last, age, height, weight, sys, dia, cancer, diabetes, alz));
 				} 		
  				else if (choice == 3) {
- 					// save members TEXT DONE
+ 					// save members TEXT DONE XML DONE BIN DONE?
  					Scanner scan1 = new Scanner(System.in);
  					String letterChoice, nameFile;
  					System.out.print("(T)ext, (B)inary, or (X)ML? ");
@@ -109,10 +108,16 @@ public class InsuranceRiskCalculator {
  					if ( letterChoice.equals("T") || letterChoice.equals("t")) {
  	 					MemberWriter.printMembersToTextFile(emps, nameFile);
  					}
+ 					if ( letterChoice.equals("B") || letterChoice.equals("b")) {
+ 	 					MemberWriter.writeMembersToBinary(emps, nameFile);
+ 					}
+ 					if ( letterChoice.equals("X") || letterChoice.equals("x")) {
+ 	 					MemberWriter.writeMembersToXML(emps, nameFile);
+ 					}
  					
 				} 		
  				else if (choice == 4) {
- 					// load members TXT DONE
+ 					// load members TXT DONE XML DONE BIN DONE
  					Scanner scan2 = new Scanner(System.in);
  					String letterChoice, nameFile;
  					System.out.print("(T)ext, (B)inary, or (X)ML? ");
@@ -122,6 +127,12 @@ public class InsuranceRiskCalculator {
  					
  					if ( letterChoice.equals("T") || letterChoice.equals("t")) {
  						emps = MemberReader.readMembersFromFile(nameFile);
+ 					}	
+ 					if ( letterChoice.equals("B") || letterChoice.equals("b")) {
+ 						emps = MemberReader.readMembersFromBinary(nameFile);
+ 					}	
+ 					if ( letterChoice.equals("X") || letterChoice.equals("x")) {
+ 						emps = MemberReader.readMembersFromXML(nameFile);
  					}	
 				} 		
  				else if (choice == 5) {
