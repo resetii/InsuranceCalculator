@@ -150,16 +150,13 @@ public class Member implements Serializable {
 	public String getLast() {
 		return last;
 	}
-
 	public void setLast(String last) {
 		this.last = last;
 	}
-	
-	
+	// Insurance Score via Assessor class
 	public InsuranceScore getMyScore() {
 		return myScore;
 	}
-
 	public void setMyScore(InsuranceScore myScore) {
 		this.myScore = myScore;
 	}

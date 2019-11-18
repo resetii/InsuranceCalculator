@@ -1,5 +1,22 @@
-
+/**
+ * This class will take in all of the provided information about a Member object and calculate how high risk they
+ * are to insure. 
+ * @author James
+ *
+ */
 public class Assessor {
+	/**
+	 * 
+	 * @param age
+	 * @param height
+	 * @param weight
+	 * @param bpSys
+	 * @param bpDias
+	 * @param cancer
+	 * @param diabetes
+	 * @param alz
+	 * @return insurance risk score
+	 */
 	public static int assessScore(int age, int height, int weight, int bpSys, int bpDias, boolean cancer, boolean diabetes, boolean alz) {
 		int counter = 0;
 		double bmi;
@@ -53,6 +70,7 @@ public class Assessor {
 			counter = counter + 100;
 		}
 		
+		// adds on some extra points if there is history of cancer, diabetes, alzheimer's
 		if (cancer) {
 			counter = counter + 10;
 		}

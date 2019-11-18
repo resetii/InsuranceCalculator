@@ -1,5 +1,9 @@
 public class MemberParser {
-
+	/**
+	 * Parses a member object from tab delimited string
+	 * @param desc an input string
+	 * @return member object
+	 */
 	public static Member createMemberFromLine(String desc) {
 		int age, height, weight, bpSys, bpDias;
 		boolean cancer, diabetes, alz;

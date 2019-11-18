@@ -1,13 +1,19 @@
-// James Campion
-// This is the file reader that will do a try statement to read through the 
-//   text files or throw exceptions if there is a problem
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.beans.XMLDecoder;
 import java.io.*;
 
+/**
+ * This class can read information from various formats and create members. 
+ * @author James
+ *
+ */
 public class MemberReader {
+	/**
+	 * Reading from text file.
+	 * @param fname File name
+	 * @return List of members
+	 */
 	public static ArrayList<Member> readMembersFromFile(String fname) {
 		try {
 			ArrayList<Member> results = new ArrayList<Member>();
@@ -24,6 +30,11 @@ public class MemberReader {
 			return null;
 		}
 	}
+	/**
+	 * Reading from binary file.
+	 * @param fname File name
+	 * @return List of members
+	 */
 	public static ArrayList<Member> readMembersFromBinary(String fname) {
         try {
         	FileInputStream fis = new FileInputStream(fname);
@@ -35,6 +46,11 @@ public class MemberReader {
             return null;
         }
     }
+	/**
+	 * Reading from XML file.
+	 * @param fname File name
+	 * @return List of members
+	 */
 	public static ArrayList<Member> readMembersFromXML(String fname) {
         try {
             XMLDecoder xml = new XMLDecoder(new BufferedInputStream(new FileInputStream(fname)));
